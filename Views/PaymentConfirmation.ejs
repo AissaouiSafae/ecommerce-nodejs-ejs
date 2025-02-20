@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .summary {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('menuCli') %>
+        <h1>Thank You for Your Purchase!</h1>
+        <div class="summary">
+            <p>Name: <%= firstName %>
+                    <%= lastName %>
+            </p>
+            <p>Address: <%= address %>
+            </p>
+            <p>Your total payment: $<%= total %>
+            </p>
+            <p>Your tax payment: $<%= tax %>
+            </p>
+            <p>Your grand total payment: $<%= gtotal %>
+            </p>
+        </div>
+        <a href="/Products?view=shoping" class="btn">Continue Shopping</a>
+</body>
+
+</html>

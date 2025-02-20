@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            color: #333;
+            padding: 15px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4b87dc;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .summary {
+            width: 80%;
+            margin: 20px auto;
+            font-size: 18px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .form-container {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('menuCli') %>
+        <header>
+            <h1>Payment</h1>
+        </header>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (cartItems.length> 0) { %>
+                    <% cartItems.forEach(item=> { %>
+                        <tr>
+                            <td>
+                                <%= item.product.name %>
+                            </td>
+                            <td>$<%= item.product.price %>
+                            </td>
+                            <td>
+                                <%= item.quantity %>
+                            </td>
+                            <td>$<%= (item.product.price * item.quantity).toFixed(2) %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="4">No items in the cart</td>
+                                </tr>
+                                <% } %>
+            </tbody>
+        </table>
+        <div class="summary">
+            Total: $<%= cartItems.reduce((total, item)=> total + (item.product.price * item.quantity), 0).toFixed(2)
+                %><br>
+                Tax (15%): $<%= (cartItems.reduce((total, item)=> total + (item.product.price * item.quantity), 0) *
+                    0.15).toFixed(2) %><br>
+                    Grand Total: $<%= (cartItems.reduce((total, item)=> total + (item.product.price * item.quantity), 0)
+                        * 1.15).toFixed(2) %>
+        </div>
+
+        <div class="form-container">
+            <form action="/confirmation" method="POST">
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="address" name="address" required>
+                </div>
+                <div class="mb-3">
+                    <label for="cardNumber" class="form-label">Card Number</label>
+                    <input type="text" class="form-control" id="cardNumber" name="cardNumber" required>
+                </div>
+                <div class="text-center">
+                    <a href="/cart" class="btn btn-secondary">Back to Cart</a>
+                    <input type="hidden" name="total"
+                        value="<%= cartItems.reduce((total, item) => total + (item.product.price * item.quantity), 0).toFixed(2) %>">
+                    <input type="hidden" name="tax"
+                        value="<%= (cartItems.reduce((total, item) => total + (item.product.price * item.quantity), 0) * 0.15).toFixed(2) %>">
+                    <input type="hidden" name="gtotal"
+                        value="<%= (cartItems.reduce((total, item) => total + (item.product.price * item.quantity), 0) * 1.15).toFixed(2) %>">
+                    <button type="submit" class="btn btn-primary">Confirmation</button>
+                </div>
+            </form>
+
+        </div>
+</body>
+
+</html>

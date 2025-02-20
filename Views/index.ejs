@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutons Go Shopping et Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    .carousel-inner img {
+        height: 500px;
+        object-fit: cover;
+    }
+
+    .carousel-caption h5 {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 1.8rem;
+    }
+
+    .carousel-caption p {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+    footer {
+        background-color: #343a40;
+        color: white;
+        padding: 1rem 0;
+        font-size: 0.9rem;
+    }
+
+    footer p {
+        margin: 0;
+    }
+</style>
+
+<body>
+
+    <div id="promoCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/uploads/3.jpg" class="d-block w-100" alt="Promotion 1">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Smartphone Sale</h5>
+                    <p>Get the latest smartphones at amazing prices.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/uploads/pexels-pixabay-38544.jpg" class="d-block w-100" alt="Promotion 2">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Discount on Tablets</h5>
+                    <p>Save up to 25% on the latest tablets.</p>
+
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/uploads/4.jpg" class="d-block w-100" alt="Promotion 3">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Discount on Laptops</h5>
+                    <p>Save up to 20% on high-end laptops.</p>
+
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#promoCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="container text-center mt-5">
+        <h1 class="mb-4 fw-bold text-body">Welcome to Our Shopping Website</h1>
+        <p class="mb-4 text-muted fs-5">
+            Discover amazing products and deals tailored just for you.
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <!--
+            <a href="/Products?view=shoping" class="btn btn-outline-secondary btn-lg px-4 py-2">Go Shopping</a>-->
+            <a href="/login" class="btn btn-secondary btn-lg px-4 py-2 shadow">Se connecter</a>
+        </div>
+    </div>
+
+    <br />
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Shop. All Rights Reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+
+            color: #333;
+            padding: 15px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+
+        th {
+            background-color: #4b87dc;
+            color: #fff;
+            text-align: center;
+            vertical-align: middle;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        td a {
+            text-decoration: none;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        .clear-cart {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .clear-cart:hover {
+            background-color: #c82333;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .action-btns input {
+            background-color: #ffc107;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .action-btns input:hover {
+            background-color: #e0a800;
+        }
+
+        .cart-summary {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .empty-cart-message {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('menuCli') %>
+        <header>
+            <h1>Shopping Cart</h1>
+        </header>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% cartItems.forEach(item=> { %>
+                    <tr>
+                        <td>
+                            <%= item.product.name %>
+                        </td>
+                        <td>
+                            <%= item.product.price %>
+                        </td>
+                        <td>
+                            <%= item.quantity %>
+                        </td>
+                        <td>
+                            <%= item.product.price * item.quantity %>
+                        </td>
+                        <td>
+                            <form action="/cart/<%= item._id %>?_method=DELETE" method="POST">
+                                <button type="submit">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="/Products?view=shoping" class="btn">Continue Shopping</a>
+            <a href="/payment" class="btn">Proceed to Payment</a>
+        </div>
+
+</body>
+
+</html>
